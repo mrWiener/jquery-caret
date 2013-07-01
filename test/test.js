@@ -19,7 +19,9 @@ describe('jquery-caret', function () {
 
     connect.createServer(connect().use(connect.static('test/html'))).listen(port);
     
-    this.browser.get('http://localhost:' + port + '/test.html', function() {
+    this.browser.get('http://localhost:' + port + '/test.html', function(err) {
+      if(err) throw err;
+      
       done();
     });
   });
