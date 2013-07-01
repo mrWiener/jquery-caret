@@ -14,3 +14,5 @@ node_js:
 - default
 before_script:
   - npm install -g grunt-cli
+  - npm install -g phantomjs
+  - phantomjs --webdriver=4444
