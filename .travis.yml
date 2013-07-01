@@ -1,0 +1,16 @@
+--- 
+env: 
+  global: 
+  - secure: |-
+      aSpftuYI9PPID83cmsBEJ6mSXFMXRFA2id2lTiOFZQynD81mp4RMCbg4Fyv5
+      cAm2Q8xDDFaah8Rxn+R6ya2vKmXqcgzw0Jknk8MfjxXpO9yFrjR5FUyhdwpZ
+      577XUGSgzJpYNZBzmI+FytMowKNG+n8NDbD6gtdRitNXmVAJsb8=
+  - secure: |-
+      bKFuYsjJFNreLHGSS8NQzdsf95qNDVOiq/gOvbG/oHgnPGXaL61AWMZ4sMIn
+      moSRdzpPRFK+l09aZ5+KKEEHW/Xtg8pTdaKe+oCyL1khkHDxbohH4uXSBGw8
+      mgB0XljgB9obPJe+Uq9j4cnBoLWtWinZWGs6LcGZhgGODpkZyfk=
+language: node_js
+node_js: 
+- default
+before_script:
+  - npm install -g grunt-cli
