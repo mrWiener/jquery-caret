@@ -21,59 +21,33 @@ describe('jquery-caret', function () {
     
     this.browser.get('http://localhost:' + port + '/test.html', function(err) {
       if(err) throw err;
-      
+
       done();
     });
   });
 
-  it('performs as expected', function (done) {
-    this.browser.title(function(err, title) {
-      if(err) throw err;
+  describe('.caret()', function() {
+    var browser = this.browser;
 
-      expect(title).to.equal('test');
-      done();
-    });
-  });
-
-  describe('text input: empty', function() {
-    it('should return right caret index when not focused', function(done) {
-      var browser = this.browser;
-
-      browser.elementById('text1', function(err, element) {
+    it('should be a function', function(done) {
+      this.browser.execute('return typeof $().caret;', function(err, result) {
         if(err) throw err;
 
-        browser.click(element, function(err) {
-          if(err) throw err;
-
-          browser.execute('return $("#text1").caret();',
-          function(err, result) {
-            if(err) throw err;
-
-            expect(result).to.equal(0);
-            done();
-          });
-        });
+        expect(result).to.equal('function');
+        done();
       });
     });
 
-    it('should return right caret index when focused', function(done) {
-      var browser = this.browser;
+    it('should return right index of empty focused input', function(done) {
+      getFocusCaret(this.browser, '#text1', 0, done);
+    });
 
-      browser.elementById('text1', function(err, element) {
-        if(err) throw err;
+    it('should return right index of focused input containging text', function(done) {
+      getFocusCaret(this.browser, '#text2', 0, done);
+    });
 
-        browser.click(element, function(err) {
-          if(err) throw err;
-
-          browser.execute('return $("#text1").focus().caret();',
-          function(err, result) {
-            if(err) throw err;
-
-            expect(result).to.equal(0);
-            done();
-          });
-        });
-      });
+    it('should return right index of focused input containging text with spaces', function(done) {
+      getFocusCaret(this.browser, '#text3', 0, done);
     });
   });
 
@@ -83,6 +57,19 @@ describe('jquery-caret', function () {
     });
   });
 });
+
+//-------------------------------------------------------------------
+// Private functions
+//-------------------------------------------------------------------
+
+function getFocusCaret(browser, selector, expected, done) {
+  browser.execute('return $("' + selector + '").focus().caret();', function(err, result) {
+    if(err) throw err;
+
+    expect(result).to.equal(expected);
+    done();
+  });
+}
 
 /*
 function jobPassed(jobId, username, key, done) {
