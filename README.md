@@ -43,7 +43,7 @@ $('input').caretToEnd();
 
 ## Author
 
-Luke Morton
+Created by Luke Morton, tested and maintained by Lucas Wiener
 
 ## License
 
